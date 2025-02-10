@@ -1,0 +1,146 @@
+/* Ajustes na página de login */
+
+body.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url([[pix:theme|background-login]]) no-repeat center center fixed;
+    background-size: cover;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 75% 85%, 50% 90%, 25% 85%, 0% 80%);
+
+}
+
+
+/* Camada de desfoque */
+.login-desfoque {
+    position: fixed; /* Cobrir toda a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(1px); /* Testando um desfoque maior */
+    background: rgba(255, 255, 255, 0.4); /* Mais visível */
+    
+}
+
+/* Wrapper do login */
+.login-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Caixa de login */
+.login-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Ajusta o espaçamento entre os elementos */
+}
+
+.login-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--mooze-primary);
+}
+
+/* Título */
+.login-card h2 {
+    color: var(--mooze-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Estilização do formulário */
+.login-card .form-control {
+    width: 100%;
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--mooze-gray-300);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Botão de login */
+.login-card input[type="submit"],
+.login-card button {
+    background-color: var(--mooze-primary);
+    color: white;
+    width: 100%;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-card input[type="submit"]:hover,
+.login-card button:hover {
+    background-color: var(--mooze-secondary);
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"],
+.login-card button {
+    padding: 12px; /* Aumenta um pouco a área de clique */
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+
+/* Link "Esqueceu a senha?" */
+.forgot-password {
+    margin-top: 10px; /* Reduz espaço excessivo */
+    font-size: 0.9rem;
+}
+
+
+.forgot-password:hover {
+    color: var(--mooze-primary);
+}
+
+.login-logo {
+    max-width: 120px; /* Ajuste conforme necessário */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px; /* Reduz espaço abaixo da logo */
+}
+
+/* Esconder seletor de idiomas */
+#action-menu-0-menubar {
+    display: none !important;
+}
+
+/* Esconder botão de aviso de cookies */
+button[data-modal="alert"] {
+    display: none !important;
+}
+
+
+
+
+/* forgot_password */
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{config.lang}}">
+<head>
+    <title>{{config.sitename}}</title>
+    {{> theme_boost/head }}
+</head>
+<body class="{{loginattributes}} login-page">
+<div class="login-desfoque">
+    <div class="login-wrapper">
+        <div class="login-card">
+        <img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="{{config.sitename}}" class="login-logo">
+            <div class="login-content">
+            {{{ output.main_content }}}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
