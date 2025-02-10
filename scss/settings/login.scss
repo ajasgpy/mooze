@@ -113,11 +113,30 @@ body.login-page::before {
 }
 
 .login-logo {
-    max-width: 120px; /* Ajuste conforme necessário */
+    width: 100%;
+    max-width: 120px; /* Mantém um limite máximo */
     height: auto;
+    aspect-ratio: 1 / 1; /* Mantém a proporção quadrada */
+    background: url([[pix:theme|logo]]) no-repeat center center;
+    background-size: contain;
     display: block;
-    margin: 0 auto 10px; /* Reduz espaço abaixo da logo */
+    margin: 0 auto 10px;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .login-logo {
+        max-width: 100px; /* Reduz o tamanho em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-logo {
+        max-width: 80px; /* Ajusta para telas muito pequenas */
+    }
+}
+
+
 
 /* Esconder seletor de idiomas */
 #action-menu-0-menubar {
