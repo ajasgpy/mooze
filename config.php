@@ -12,18 +12,18 @@ $THEME->scss = function(theme_config $theme) {
 
 // Definição de layouts
 $THEME->layouts = [
-    'standard' => [  // Nome do layout (pode ser usado por várias páginas)
-        'file' => 'frontpage.php',  // Arquivo de layout que será carregado
-        'regions' => ['side-pre'],  // Áreas onde blocos podem ser adicionados
-        'defaultregion' => 'side-pre', // Região padrão para novos blocos
-    ],
-    // Login page.
     'login' => [
         'file' => 'login.php',
         'regions' => [],
         'options' => ['langmenu' => true],
     ],
+    'forgotpassword' => [
+        'file' => 'login.php', // Garante que a página de recuperação de senha use o mesmo template
+        'regions' => [],
+        'options' => ['langmenu' => true],
+    ],
 ];
+
 
 // Ativa o sistema de ícones FontAwesome
 $THEME->iconsystem = 'fontawesome';
