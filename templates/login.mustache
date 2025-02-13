@@ -8,7 +8,9 @@
     <div class="login-desfoque">
         <div class="login-wrapper">
             <div class="login-card">
-                <div class="login-logo"></div>
+                <a href="{{ config.wwwroot }}" class="login-logo">
+                    <img src="{{ logourl }}" alt="{{ config.sitename }}">
+                </a>
                 <div class="login-content">
                     {{{ output.main_content }}}
                 </div>
