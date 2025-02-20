@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{config.lang}}">
+<head>
+    <title>{{sitename}}</title>
+    {{> theme_boost/head }}
+</head>
+<body class="{{frontpageattributes}} mooze-frontpage">
+    {{> theme_mooze/navbar }} <!-- Navbar customizado -->
+
+    <div class="mooze-hero">
+        <h2>Bem-vindo ao {{sitename}}</h2>
+        <p>A melhor plataforma de aprendizado para você!</p>
+        <a href="{{config.wwwroot}}/login/index.php" class="btn-primary">Acessar</a>
+    </div>
+
+    <div class="mooze-featured-courses">
+        <div class="course-container">
+            {{{ output.main_content }}} <!-- Renderiza os cursos normalmente -->
+        </div>
+    </div>
+
+    <div class="mooze-info">
+        <h2>Por que estudar conosco?</h2>
+        <p>Nosso ambiente é interativo, seguro e com suporte especializado.</p>
+    </div>
+
+    {{> theme_boost/footer }}
+</body>
+</html>

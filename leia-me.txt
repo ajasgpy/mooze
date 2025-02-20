@@ -1,0 +1,22 @@
+Estrutura de pasta e arquivos atuais
+
+/javascript/
+/lang/en/theme_moozephp
+/lang/pt_br/theme_moozephp
+/layout/frontpagephp
+/layout/loginphp
+/pix/background-login.png
+/pix/faviconico
+/pix/login-bg.jpg
+/pix/logo.png
+/scss/main.scss
+/scss/settings/forgot_password.scss
+/scss/settings/login.scss
+/scss/settings/typography.scss
+/style/login.css
+/style/mooze.css
+/templates/frontpage.mustache
+/templates/login.mustache
+config.php
+lib.php
+version.php

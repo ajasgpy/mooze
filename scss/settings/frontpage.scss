@@ -1,0 +1,133 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.mooze-frontpage {
+    background: var(--mooze-gray-100);
+    padding: 0; /* Remove qualquer espaçamento extra */
+    margin: 0;
+}
+
+.mooze-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--mooze-primary);
+    padding: 10px 20px;
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+
+        li {
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                transition: 0.3s;
+
+                &:hover {
+                    color: var(--mooze-secondary);
+                }
+            }
+        }
+    }
+}
+
+.mooze-hero {
+    text-align: center;
+    background: var(--mooze-primary);
+    color: white;
+    padding: 60px 20px;
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .btn-primary {
+        background: var(--mooze-secondary);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: 0.3s;
+
+        &:hover {
+            background: var(--mooze-tertiary);
+        }
+    }
+}
+
+.mooze-featured-courses {
+    text-align: center;
+    padding: 50px 20px;
+
+    h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--mooze-primary);
+    }
+
+    .course-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Cards mais responsivos
+        gap: 24px;
+        max-width: 400px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .coursebox {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        max-width: 350px; // Define um limite para cada card
+        margin: auto; // Mantém os cards alinhados corretamente
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .coursename {
+            font-size: 1.3rem;
+            font-weight: bold;
+
+            a {
+                color: var(--mooze-primary);
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .teachers {
+            font-size: 1rem;
+            color: var(--mooze-gray-700);
+
+            span {
+                font-weight: bold;
+            }
+
+            a {
+                color: var(--mooze-secondary);
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

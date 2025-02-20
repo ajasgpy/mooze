@@ -14,9 +14,10 @@ function theme_mooze_get_main_scss_content($theme) {
     }
 
     $mooze_scss_files = [
+        'settings/frontpage.scss',
         'settings/login.scss',
         'settings/typography.scss',
-        'settings/forgot_password.scss', // <- Este precisa ser lido corretamente
+        'settings/forgot_password.scss', 
         'main.scss',
     ];
 

@@ -1,31 +1,39 @@
 <?php
-defined('MOODLE_INTERNAL') || die(); 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title><?php echo $PAGE->title; ?></title>
-    <?php echo $OUTPUT->standard_head_html(); ?>
-</head>
-<body <?php echo $OUTPUT->body_attributes(); ?>>
+defined('MOODLE_INTERNAL') || die();
 
-    <?php echo $OUTPUT->standard_top_of_body_html(); ?>
+// Obtém os atributos do body.
+$frontpageattributes = $OUTPUT->body_attributes();
 
-    <div id="page">
-        <div id="page-header">
-            <h1><?php echo format_string($SITE->fullname); ?></h1>
-        </div>
+// Verifica se o usuário está logado.
+$loggedin = isloggedin();
 
-        <div id="page-content">
-            <?php echo $OUTPUT->main_content(); ?> <!-- Esse é obrigatório -->
-        </div>
+// Obtém a navegação primária.
+$primary = new core\navigation\output\primary($PAGE);
+$renderer = $PAGE->get_renderer('core');
+$primarymenu = $primary->export_for_template($renderer);
 
-        <div id="page-footer">
-            <?php echo $OUTPUT->standard_footer_html(); ?>
-        </div>
-    </div>
+// Obtém a navegação secundária, se existir.
+$secondarynavigation = false;
+if ($PAGE->has_secondary_navigation()) {
+    $secondary = $PAGE->secondarynav;
+    if ($secondary->get_children_key_list()) {
+        $moremenu = new \core\navigation\output\more_menu($secondary, 'nav-tabs', true);
+        $secondarynavigation = $moremenu->export_for_template($OUTPUT);
+    }
+}
 
-    <?php echo $OUTPUT->standard_end_of_body_html(); ?>
-</body>
-</html>
+// Criar o contexto para o Mustache.
+$frontpagecontext = [
+    'sitename' => format_string($SITE->shortname, true, ['context' => \core\context\course::instance(SITEID), "escape" => false]),
+    'output' => $OUTPUT,
+    'frontpageattributes' => $frontpageattributes,
+    'primarymenu' => $primarymenu['moremenu'],
+    'mobileprimarynav' => $primarymenu['mobileprimarynav'],
+    'secondarymoremenu' => $secondarynavigation ?: false,
+    'usermenu' => $primarymenu['user'],
+    'langmenu' => $primarymenu['lang'],
+    'loggedin' => $loggedin
+];
 
+// Renderiza o template Mustache corrigido.
+echo $OUTPUT->render_from_template('theme_mooze/frontpage', $frontpagecontext);

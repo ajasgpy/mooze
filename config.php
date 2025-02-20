@@ -12,17 +12,24 @@ $THEME->scss = function(theme_config $theme) {
 
 // Definição de layouts
 $THEME->layouts = [
+   'frontpage' => [
+        'file' => 'frontpage.php',
+        'regions' => ['side-pre'],
+        'defaultregion' => 'side-pre',
+        
+    ],
     'login' => [
         'file' => 'login.php',
         'regions' => [],
         'options' => ['langmenu' => true],
     ],
     'forgotpassword' => [
-        'file' => 'login.php', // Garante que a página de recuperação de senha use o mesmo template
+        'file' => 'login.php',
         'regions' => [],
         'options' => ['langmenu' => true],
     ],
 ];
+
 
 
 // Ativa o sistema de ícones FontAwesome
