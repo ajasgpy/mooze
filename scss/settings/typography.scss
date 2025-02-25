@@ -20,10 +20,16 @@
     --mooze-gray-700: #374151;
     --mooze-gray-800: #1f2937;
     --mooze-gray-900: #111827;
+
+    --azul-escuro: #2e3192;  /* Cor do texto */
+    --amarelo-ouro: #f2b705;  /* Anel ao redor do mascote */
+    --preto: #000000;  /* Parte preta do cabelo e detalhes */
+    --cinza-claro: #f5f5f5;  /* Fundo claro */
+    --branco: #ffffff;  /* Fundo interno do logo */
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-weight: 600;
     line-height: 1.2;
     color: var(--mooze-primary);

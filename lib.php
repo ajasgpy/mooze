@@ -15,6 +15,7 @@ function theme_mooze_get_main_scss_content($theme) {
 
     $mooze_scss_files = [
         'settings/frontpage.scss',
+        'settings/navbar.scss',
         'settings/login.scss',
         'settings/typography.scss',
         'settings/forgot_password.scss', 

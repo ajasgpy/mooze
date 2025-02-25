@@ -1,0 +1,56 @@
+.mooze-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--amarelo-ouro);
+    padding: 5px 100px;
+
+    .logo img {
+        height: 50px;
+        display: flex;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin-bottom: 0rem;
+
+        li {
+            a {
+                display: inline-block;
+                padding: 0px 30px;
+                font-size: 16px;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 20px;
+                transition: all 0.3s ease-in-out;
+
+                // Botões transparentes para "Início" e "Cursos"
+                &:not(.btn-entrar) {
+                    color: white;
+                    border: 2px solid white;
+                    background: transparent;
+
+                    &:hover {
+                        background: white;
+                        color: var(--amarelo-ouro);
+                    }
+                }
+
+                // Botão especial para "Entrar"
+                &.btn-entrar {
+                    background: white;
+                    color: var(--amarelo-ouro);
+                    border: 2px solid white;
+
+                    &:hover {
+                        background: var(--mooze-secondary);
+                        color: white;
+                        border-color: var(--mooze-secondary);
+                    }
+                }
+            }
+        }
+    }
+}
