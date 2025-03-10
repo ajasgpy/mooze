@@ -1,0 +1,181 @@
+// Variáveis
+$primary-color: #5C4599;
+$secondary-color: #9342A6;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+// Container principal
+.available-courses-section {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    position: relative;
+    color: white;
+
+    // Efeito de onda no background
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: white;
+        clip-path: ellipse(70% 50% at 50% 100%);
+    }
+
+    .container {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// Cabeçalho da seção
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+}
+
+// Wrapper dos cursos
+.courses-wrapper {
+    margin: 2rem 0;
+}
+
+// Estilização das classes padrão do Moodle
+.courses.frontpage-course-list-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+}
+
+.coursebox {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: $card-shadow;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    // Imagem do curso
+    .content .summary .courseimage {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 15px 15px 0 0;
+    }
+
+    // Conteúdo do curso
+    .info {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // Título do curso
+    .coursename {
+        margin-bottom: 1rem;
+
+        a {
+            color: $primary-color;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+
+    // Professores
+    .teachers {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: auto;
+
+        a {
+            color: $primary-color;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// Botão "Ver mais"
+.courses-footer {
+    text-align: center;
+    margin: 2rem 0;
+
+    .btn-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 2rem;
+        background: white;
+        color: $primary-color;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        i {
+            transition: transform 0.3s ease;
+        }
+
+        &:hover i {
+            transform: translateX(5px);
+        }
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .available-courses-section {
+        padding: 10px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .courses.frontpage-course-list-all {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+// Oculta o h2 que está entre o id e a classe de cursos
+#frontpage-available-course-list > h2:not(.section-header h2) {
+    display: none;
+} 

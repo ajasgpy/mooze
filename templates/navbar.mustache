@@ -1,16 +1,69 @@
 <nav class="mooze-navbar">
-    <div class="logo">
-        <a href="{{config.wwwroot}}"><img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="Logo Mooze"></a>
+    <div class="navbar-container">
+        {{!-- Logo --}}
+        <div class="navbar-logo">
+            <a href="{{config.wwwroot}}">
+                <img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="{{sitename}}">
+            </a>
+        </div>
+
+        {{!-- Links principais --}}
+        <div class="navbar-links">
+            <a href="{{config.wwwroot}}" class="nav-link {{#isactivepage}}active{{/isactivepage}}">
+                <i class="fas fa-home"></i> Início
+            </a>
+            <a href="{{config.wwwroot}}/course" class="nav-link">
+                <i class="fas fa-graduation-cap"></i> Cursos
+            </a>
+        </div>
+
+        {{!-- Área do usuário --}}
+        <div class="navbar-user">
+            {{#loggedin}}
+                {{!-- Usuário logado --}}
+                <div class="user-menu" id="userMenu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span class="user-name">{{user.username}}</span>
+                        <div class="user-avatar">
+                            {{{user.profileimage}}}
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="dropdown-menu" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                {{{user.profileimage}}}
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">{{user.username}}</span>
+                                <span class="user-email">{{user.email}}</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{user.profileurl}}" class="dropdown-item">
+                            <i class="fas fa-user"></i> Meu Perfil
+                        </a>
+                        <a href="{{config.wwwroot}}/my" class="dropdown-item">
+                            <i class="fas fa-th"></i> Painel
+                        </a>
+                        <a href="{{user.messagesurl}}" class="dropdown-item">
+                            <i class="fas fa-envelope"></i> Mensagens
+                        </a>
+                        <a href="{{config.wwwroot}}/grade/report/overview/index.php" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i> Notas
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{user.logouturl}}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            {{/loggedin}}
+            {{^loggedin}}
+                {{!-- Usuário não logado --}}
+                <a href="{{config.wwwroot}}/login/index.php" class="btn-login">Entrar</a>
+            {{/loggedin}}
+        </div>
     </div>
-    <ul class="nav-links">
-        <li><a href="{{config.wwwroot}}">Início</a></li>
-        <li><a href="{{config.wwwroot}}/course/index.php">Cursos</a></li>
-        {{#loggedin}}
-            <li><a href="{{config.wwwroot}}/user/profile.php">{{ output.usermenu }}</a></li>
-            <li><a href="{{config.wwwroot}}/login/logout.php">Sair</a></li>
-        {{/loggedin}}
-        {{^loggedin}}
-            <li><a href="{{config.wwwroot}}/login/index.php" class="btn-entrar">Entrar</a></li>
-        {{/loggedin}}
-    </ul>
 </nav>

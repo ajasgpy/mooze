@@ -7,27 +7,17 @@
 <body class="{{frontpageattributes}} mooze-frontpage">
     {{> theme_mooze/navbar }} <!-- Navbar customizado -->
 
-    <div class="mooze-hero">
-        <h2>Bem-vindo ao {{sitename}}</h2>
-        <p>A melhor plataforma de aprendizado para você!</p>
-            <div class="btn-container">
-                <a href="{{config.wwwroot}}/login/index.php" class="btn-acessar">Acessar</a>
-            </div>
-    </div>
+    {{> theme_mooze/hero-section }} {{!-- Seção hero --}}
 
-    <div class="mooze-featured-courses">
-        <div class="course-container">
-            {{{ output.main_content }}} <!-- Renderiza os cursos normalmente -->
-        </div>
-    </div>
+    {{> theme_mooze/numbers-section }}  {{!-- Seção de números --}}
 
-    <div class="mooze-info">
-        <h2>Por que estudar conosco?</h2>
-        <p>Nosso ambiente é interativo, seguro e com suporte especializado.</p>
-    </div>
+    {{> theme_mooze/available-courses }} {{!-- Seção de cursos --}}
 
-    <div class="mooze-footer">
-        {{> theme_boost/footer }}
-    </div>
+    {{> theme_mooze/certification-section }} {{!-- Seção de certificados --}}
+
+    {{> theme_mooze/partners-section }} {{!-- Colaboradores ou Parceiros --}}
+
+    {{> theme_mooze/footer }} {{!-- footer --}}
+
 </body>
 </html>

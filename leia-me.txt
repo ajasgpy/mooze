@@ -1,6 +1,5 @@
 Estrutura de pasta e arquivos atuais
 
-/javascript/
 /lang/en/theme_moozephp
 /lang/pt_br/theme_moozephp
 /layout/frontpagephp
@@ -10,12 +9,15 @@ Estrutura de pasta e arquivos atuais
 /pix/login-bg.jpg
 /pix/logo.png
 /scss/main.scss
-/scss/settings/frontpage.scss
+/scss/settings/footer.scss
 /scss/settings/forgot_password.scss
+/scss/settings/frontpage.scss
 /scss/settings/login.scss
+/scss/settings/navbar.scss
 /scss/settings/typography.scss
 /style/login.css
 /style/mooze.css
+/templates/footer.mustache
 /templates/frontpage.mustache
 /templates/navbar.mustache
 /templates/login.mustache

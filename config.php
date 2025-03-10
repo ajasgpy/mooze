@@ -41,3 +41,7 @@ $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 // Remove a funcionalidade de docking (painel lateral antigo do Moodle)
 $THEME->enable_dock = false;
 
+$THEME->javascripts_footer = [
+    'navbar'
+];
+

@@ -1,128 +1,25 @@
+// Reset básico
 html, body {
     margin: 0;
     padding: 0;
 }
 
+// Estilo base da página
 .mooze-frontpage {
     background: var(--mooze-gray-100);
-    padding: 0; /* Remove qualquer espaçamento extra */
+    padding: 0;
     margin: 0;
 }
 
-.mooze-hero {
+// Regra comum para todas as seções
+.hero-section, .numbers-section, .available-courses-section, .certification-section, .partners-section, .mooze-footer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinha tudo à esquerda */
-    padding: 60px 100px; /* Mantém o espaçamento consistente */
-
-    h2 {
-        font-family: sans-serif;
-        font-weight: 10; /* Negrito */
-        font-size: 2.5rem; /* Tamanho para desktop */
-        text-align: left;
-        width: 100%;
-        color: #333; /* Cor da fonte */
-        margin: 20px 0;
-    }
-    
-    /* Ajustes para dispositivos móveis */
-    @media (max-width: 768px) {
-        h2 {
-            font-size: 1.75rem; /* Tamanho para dispositivos móveis */
-        }
-    }
-    
-    /* Mantém o alinhamento à esquerda para os outros elementos */
-    h2, p, .btn-container {
-        text-align: left;
-        width: 100%;
-    }
-    
-
-    .btn-container {
-        margin-top: 10px; /* Espaço entre o texto e o botão */
-    }
-
-    .btn-acessar {
-        display: inline-block; /* Garante que o botão não ocupe 100% da largura */
-        padding: 10px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 20px;
-        background: var(--mooze-secondary);
-        color: white;
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-            background: var(--mooze-secondary);
-            color: white;
-            border-color: var(--mooze-secondary);
-        }
-    }
+    align-items: flex-start;
+    padding: 10px 100px 50px 100px;
 }
 
-.course-container, .mooze-info, .mooze-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinha tudo à esquerda */
-    padding: 10px 100px 10px 100px; /* Mantém o espaçamento consistente */ 
-}
-.courses.frontpage-course-list-all {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; // Alinha os cursos centralizados
-    align-items: stretch; // Mantém todos na mesma altura
-    padding: 20px;
-}
-
-.coursebox {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    max-width: 300px; // Define um tamanho fixo para manter a organização
-    flex: 1 1 300px; // Permite ajuste dinâmico para que fiquem lado a lado
-    min-height: 150px;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .coursename {
-        font-size: 1.3rem;
-        font-weight: bold;
-        text-align: center;
-
-        a {
-            //color: var(--amarelo-ouro);
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    .teachers {
-        font-size: 1rem;
-        color: var(--mooze-gray-700);
-        text-align: center;
-
-        span {
-            font-weight: bold;
-        }
-
-        a {
-            color: var(--mooze-secondary);
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
+// Ajuste específico para hero-section
+.hero-section {
+    padding-top: 70px;
 }
