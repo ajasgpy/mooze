@@ -5,17 +5,61 @@
     {{> theme_boost/head }}
 </head>
 <body class="{{loginattributes}} login-page">
-    <div class="login-desfoque">
+    <div class="mooze-login">
+        {{> theme_mooze/navbar }}
+
         <div class="login-wrapper">
-            <div class="login-card">
-                <a href="{{ config.wwwroot }}" class="login-logo">
-                    <img src="{{ logourl }}" alt="{{ config.sitename }}">
-                </a>
-                <div class="login-content">
+            {{!-- Área da ilustração à esquerda --}}
+            <div class="login-illustration">
+                <div class="illustration-content">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Fundo -->
+                        <circle class="login-bg floating" cx="250" cy="200" r="150" />
+                        
+                        <!-- Elementos decorativos -->
+                        <g class="login-elements floating">
+                            <!-- Ícone de usuário estilizado -->
+                            <circle cx="250" cy="150" r="40" />
+                            <path d="M180 280 A100 100 0 0 1 320 280" stroke-width="8" fill="none" stroke="currentColor" />
+                            
+                            <!-- Elementos flutuantes -->
+                            <circle cx="150" cy="150" r="15" class="login-accent" />
+                            <circle cx="350" cy="150" r="10" />
+                            <circle cx="180" cy="250" r="12" />
+                            <circle cx="320" cy="250" r="8" class="login-accent" />
+                            
+                            <!-- Linhas decorativas -->
+                            <line x1="150" y1="100" x2="350" y2="100" stroke="currentColor" stroke-width="4" />
+                            <line x1="180" y1="300" x2="320" y2="300" stroke="currentColor" stroke-width="4" />
+                        </g>
+                        
+                        <!-- Elementos de destaque -->
+                        <g class="login-accent">
+                            <circle cx="120" cy="120" r="8" />
+                            <circle cx="380" cy="120" r="8" />
+                            <circle cx="120" cy="280" r="8" />
+                            <circle cx="380" cy="280" r="8" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="illustration-text">
+                    <h2>Aprenda no seu ritmo</h2>
+                    <p>Acesse cursos de qualidade e evolua sua carreira</p>
+                </div>
+            </div>
+
+            {{!-- Área do formulário à direita --}}
+            <div class="login-form-area">
+                <div class="form-wrapper">
+                    <div class="form-header">
+                        <img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="{{sitename}}" class="login-logo">
+                    </div>
                     {{{ output.main_content }}}
                 </div>
             </div>
         </div>
+
+        {{> theme_mooze/footer }}
     </div>
 </body>
 </html>

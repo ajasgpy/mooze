@@ -7,22 +7,6 @@ body.login-page::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url([[pix:theme|background-login]]) no-repeat center center fixed;
-    background-size: cover;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 75% 85%, 50% 90%, 25% 85%, 0% 80%);
-
-}
-
-
-/* Camada de desfoque */
-.login-desfoque {
-    position: fixed; /* Cobrir toda a tela */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    backdrop-filter: blur(1px); /* Testando um desfoque maior */
-    background: rgba(255, 255, 255, 0.4); /* Mais visível */
     
 }
 
@@ -35,6 +19,10 @@ body.login-page::before {
     min-height: 100vh;
     width: 100%;
     padding: 20px;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    padding-top: 100px;
 }
 
 /* Caixa de login */
@@ -147,14 +135,98 @@ button[data-modal="alert"] {
     display: none !important;
 }
 
+.mooze-login {
+    .login-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: stretch;
+        padding-top: 100px;
+    }
 
+    .login-illustration {
+        flex: 1;
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+        color: white;
+        position: relative;
 
+        .illustration-svg {
+            width: 400px;
+            height: 300px;
+            margin-bottom: 2rem;
+            
+            svg {
+                width: 100%;
+                height: 100%;
+                fill: white;
+                opacity: 0.9;
+                
+                .floating {
+                    animation: float 6s ease-in-out infinite;
+                }
+            }
+        }
 
-/* forgot_password */
+        .illustration-content {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 2rem;
 
+            svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
 
+                .login-bg {
+                    fill: rgba(255, 255, 255, 0.1);
+                }
 
+                .login-elements {
+                    fill: rgba(255, 255, 255, 0.9);
+                }
 
+                .login-accent {
+                    fill: #FFD700;
+                }
 
+                .floating {
+                    animation: float 6s ease-in-out infinite;
+                }
+            }
+        }
 
+        .illustration-text {
+            text-align: center;
+            max-width: 400px;
+            z-index: 1;
 
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 600;
+            }
+
+            p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+        }
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
