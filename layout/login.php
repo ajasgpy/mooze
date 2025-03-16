@@ -2,7 +2,8 @@
 // Garante que este arquivo só pode ser acessado dentro do Moodle.
 defined('MOODLE_INTERNAL') || die();
 
-
+// Define o tipo de documento HTML.
+echo $OUTPUT->doctype();
 
 // Adiciona atributos ao <body>, como classes do tema.
 $loginattributes = $OUTPUT->body_attributes();

@@ -1,6 +1,9 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
+// Define o tipo de documento HTML.
+echo $OUTPUT->doctype();
+
 // Obtém os atributos do body.
 $frontpageattributes = $OUTPUT->body_attributes();
 

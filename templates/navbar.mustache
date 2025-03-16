@@ -31,16 +31,6 @@
                     </button>
                     
                     <div class="dropdown-menu" id="userDropdown">
-                        <div class="dropdown-header">
-                            <div class="user-avatar">
-                                {{{user.profileimage}}}
-                            </div>
-                            <div class="user-info">
-                                <span class="user-name">{{user.username}}</span>
-                                <span class="user-email">{{user.email}}</span>
-                            </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
                         <a href="{{user.profileurl}}" class="dropdown-item">
                             <i class="fas fa-user"></i> Meu Perfil
                         </a>
@@ -64,14 +54,3 @@
         </div>
     </div>
 </nav>
-
-{{#js}}
-require(
-    [
-        'theme_mooze/dropdown'
-    ],
-    function(DropdownModule) {
-        DropdownModule.init();
-    }
-);
-{{/js}}

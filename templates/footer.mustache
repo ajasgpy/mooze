@@ -97,3 +97,13 @@
 <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
+
+{{{ output.standard_end_of_body_html }}}
+
+{{#js}}
+    require(['theme_mooze/dropdown', 'theme_mooze/teste'], function(Dropdown, Teste) {
+        Dropdown.init();
+        Teste.init();
+        Teste.toggle();
+    });
+{{/js}}

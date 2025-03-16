@@ -11,15 +11,12 @@ defined('MOODLE_INTERNAL') || die();
  function theme_mooze_page_init(moodle_page $page) {
     global $PAGE;
 
-    error_log('theme_mooze_page_init() foi chamada na página: ' . $page->pagelayout);
-
-    // Garante que jQuery e os plugins necessários sejam carregados
     $PAGE->requires->jquery();
     $PAGE->requires->jquery_plugin('ui');
     $PAGE->requires->jquery_plugin('ui-css');
 
-    // Só carrega o script dropdown se a página não for a de login
-    if ($page->pagelayout !== 'login') {
+    // Só carrega o dropdown se NÃO for página de login ou recuperação de senha
+    if ($page->pagetype !== 'login-index' && $page->pagetype !== 'login-forgotpassword') {
         $PAGE->requires->js_call_amd('theme_mooze/dropdown', 'init');
     }
 }
@@ -55,11 +52,11 @@ function theme_mooze_get_main_scss_content($theme) {
 
     foreach ($mooze_scss_files as $file) {
         $path = $CFG->dirroot . "/theme/mooze/scss/$file";
-        if (file_exists($path)) {
-            $scss .= "\n" . file_get_contents($path);
+        if (!file_exists($path)) {
+            debugging("SCSS não encontrado: $file", DEBUG_DEVELOPER);
         } else {
-            echo "SCSS não encontrado: $file <br>"; // <- Isso mostra se ele não está lendo algum SCSS
-        }
+            $scss .= "\n" . file_get_contents($path);
+        }        
     }
 
     if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_mooze', 'preset', 0, '/', $filename))) {

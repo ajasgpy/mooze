@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{config.lang}}">
+<html dir="ltr" lang="pt-br" xml:lang="pt-br">
 <head>
-    <title>{{config.sitename}}</title>
-    {{> theme_boost/head }}
+    <title>{{sitename}}</title>
+    <link rel="shortcut icon" href="{{{ output.favicon }}}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {{{ output.standard_head_html }}}
 </head>
 <body class="{{loginattributes}} login-page">
+{{{ output.standard_top_of_body_html }}}
     <div class="mooze-login">
         {{> theme_mooze/navbar }}
 

@@ -1,38 +1,38 @@
-/**
- * @module     theme_mooze/dropdown
- * @copyright  2024 Your Name
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-define(['jquery'], function($) {
-    'use strict';
+define("theme_mooze/dropdown", ["jquery"], function($) {
+    "use strict";
 
-    var init = function() {
-        console.log('theme_mooze/dropdown: initialising');
+    function init() {
+        const userMenuButton = $("#userMenuButton");
+        const dropdownMenu = $("#userDropdown");
 
-        var userMenuButton = document.getElementById('userMenuButton');
-        var userDropdown = document.getElementById('userDropdown');
+        // Toggle dropdown ao clicar no botão
+        userMenuButton.on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isExpanded = $(this).attr("aria-expanded") === "true";
+            
+            // Toggle classes e aria-expanded
+            $(this).toggleClass("active").attr("aria-expanded", !isExpanded);
+            dropdownMenu.toggleClass("show");
+        });
 
-        if (userMenuButton && userDropdown) {
-            userMenuButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                userMenuButton.classList.toggle('active');
-                userDropdown.classList.toggle('show');
-                
-                var isExpanded = userDropdown.classList.contains('show');
-                userMenuButton.setAttribute('aria-expanded', isExpanded);
-            });
+        // Fechar dropdown ao clicar fora
+        $(document).on("click", function(e) {
+            if (!$(e.target).closest(".user-menu").length) {
+                userMenuButton.removeClass("active").attr("aria-expanded", "false");
+                dropdownMenu.removeClass("show");
+            }
+        });
 
-            document.addEventListener('click', function(e) {
-                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
-                    userMenuButton.classList.remove('active');
-                    userDropdown.classList.remove('show');
-                    userMenuButton.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    };
+        // Fechar dropdown ao pressionar ESC
+        $(document).on("keyup", function(e) {
+            if (e.key === "Escape") {
+                userMenuButton.removeClass("active").attr("aria-expanded", "false");
+                dropdownMenu.removeClass("show");
+            }
+        });
+    }
 
     return {
         init: init
