@@ -39,6 +39,9 @@ if ($loggedin) {
     ];
 }
 
+// Obtém os números da função theme_mooze_numbers em lib.php
+$numbers_data = theme_mooze_numbers();
+
 // Criar o contexto para o Mustache.
 $frontpagecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => \core\context\course::instance(SITEID), "escape" => false]),
@@ -50,7 +53,8 @@ $frontpagecontext = [
     'usermenu' => $primarymenu['user'],
     'langmenu' => $primarymenu['lang'],
     'loggedin' => $loggedin,
-    'user' => $usercontext // Adiciona as informações do usuário ao contexto
+    'user' => $usercontext, // Adiciona as informações do usuário ao contexto
+    'numbers' => $numbers_data // Adiciona os números ao contexto
 ];
 
 // Renderiza o template Mustache corrigido.

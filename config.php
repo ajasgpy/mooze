@@ -48,6 +48,7 @@ $THEME->enable_dock = false;
 $THEME->yuicssmodules = array();
 
 // Additional theme options.
+
 $THEME->supportscssoptimisation = false;
 $THEME->usefallback = true; // Permite fallback para JavaScript não-AMD
 $THEME->requiredblocks = '';

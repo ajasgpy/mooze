@@ -41,22 +41,22 @@ function theme_mooze_get_main_scss_content($theme) {
         $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/preset/default.scss');
     }
 
-    $mooze_scss_files = [
-        'settings/frontpage.scss',
-        'settings/navbar.scss',
-        'settings/login.scss',
-        'settings/typography.scss',
-        'settings/forgot_password.scss', 
-        'main.scss',
-    ];
+    // 🔥 Carregar automaticamente TODOS os SCSS em settings/ e subpastas
+    $scss_folder = $CFG->dirroot . "/theme/mooze/scss/settings/";
+    $scss_files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($scss_folder));
+    
+    foreach ($scss_files as $file) {
+        if (pathinfo($file, PATHINFO_EXTENSION) === 'scss') {
+            $scss .= "\n" . file_get_contents($file);
+        }
+    }
 
-    foreach ($mooze_scss_files as $file) {
-        $path = $CFG->dirroot . "/theme/mooze/scss/$file";
-        if (!file_exists($path)) {
-            debugging("SCSS não encontrado: $file", DEBUG_DEVELOPER);
-        } else {
-            $scss .= "\n" . file_get_contents($path);
-        }        
+    // Carregar o main.scss no final para garantir que os @import sejam lidos corretamente
+    $main_scss_path = $CFG->dirroot . "/theme/mooze/scss/main.scss";
+    if (file_exists($main_scss_path)) {
+        $scss .= "\n" . file_get_contents($main_scss_path);
+    } else {
+        debugging("main.scss não encontrado", DEBUG_DEVELOPER);
     }
 
     if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_mooze', 'preset', 0, '/', $filename))) {
@@ -66,4 +66,15 @@ function theme_mooze_get_main_scss_content($theme) {
     return $scss;
 }
 
+function theme_mooze_numbers() {
+    global $DB;
+
+    // Conta a quantidade total de cursos no Moodle (ignorando o curso 'site' ID = 1)
+    $total_cursos = $DB->count_records('course', ['category' => 1]); 
+
+    // Retorna os números como um array associativo
+    return [
+        'total_cursos' => $total_cursos
+    ];
+}
 
