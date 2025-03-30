@@ -1,32 +1,15 @@
-:root {
-    /* Cores principais */
-    --mooze-primary: #1d2e36;
-    --mooze-secondary: #4a8098;
-    --mooze-tertiary: #5e9eb9;
-    
-    /* Cores de estado */
-    --mooze-success: #10b981;
-    --mooze-danger: #ef4444;
-    --mooze-warning: #f59e0b;
-    --mooze-info: #3b82f6;
-    
-    /* Tons de cinza */
-    --mooze-gray-100: #f3f4f6;
-    --mooze-gray-200: #e5e7eb;
-    --mooze-gray-300: #d1d5db;
-    --mooze-gray-400: #9ca3af;
-    --mooze-gray-500: #6b7280;
-    --mooze-gray-600: #4b5563;
-    --mooze-gray-700: #374151;
-    --mooze-gray-800: #1f2937;
-    --mooze-gray-900: #111827;
-
-    --azul-escuro: #2e3192;  /* Cor do texto */
-    --amarelo-ouro: #f2b705;  /* Anel ao redor do mascote */
-    --preto: #000000;  /* Parte preta do cabelo e detalhes */
-    --cinza-claro: #f5f5f5;  /* Fundo claro */
-    --branco: #ffffff;  /* Fundo interno do logo */
-}
+ // Variáveis
+$primary-color: #5C4599;
+$secondary-color: #9342A6;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+$light-bg: #F8F9FA;
+$footer-bg: #1c1d1f;
+$footer-text: #fff;
+$footer-link: rgba(255, 255, 255, 0.7);
+$footer-hover: #fff;
+$text-color: #1c1d1f;
+$border-color: rgba(0, 0, 0, 0.1);
+$navbar-height: 64px;
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;

@@ -7,7 +7,41 @@
         </div>
 
         <div class="courses-wrapper">
-            {{{ output.main_content }}}
+            <section id="frontpage-available-course-list">
+                <h2>Cursos disponíveis</h2>
+                <div class="courses frontpage-course-list-all">
+                    {{#popular_courses}}
+                    <div class="coursebox clearfix {{#odd}}odd{{/odd}}{{#even}}even{{/even}}" data-courseid="{{id}}" data-type="1">
+                        <div class="info">
+                            <h3 class="coursename">
+                                <a class="aalink" href="{{courseurl}}">{{fullname}}</a>
+                            </h3>
+                            <div class="moreinfo"></div>
+                        </div>
+                        <div class="content">
+                            <div class="d-flex">
+                                {{#courseimage}}
+                                <div class="courseimage">
+                                    <img src="{{courseimage}}" alt="Imagem do curso {{fullname}}">
+                                </div>
+                                {{/courseimage}}
+                                <div class="flex-grow-1">
+                                    <ul class="teachers">
+                                        <li>
+                                            <span class="font-weight-bold">Professor: </span>
+                                            <a href="{{teacherurl}}">{{teachername}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/popular_courses}}
+                </div>
+            </section>
+                <div class="hidden-courses">
+                    {{{ output.main_content }}}
+                </div>
         </div>
 
         <div class="courses-footer">

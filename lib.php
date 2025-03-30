@@ -69,12 +69,95 @@ function theme_mooze_get_main_scss_content($theme) {
 function theme_mooze_numbers() {
     global $DB;
 
-    // Conta a quantidade total de cursos no Moodle (ignorando o curso 'site' ID = 1)
-    $total_cursos = $DB->count_records('course', ['category' => 1]); 
+    //$total_cursos = $DB->count_records_select('course', 'id > 1');
+    $total_alunos = $DB->count_records_sql("
+        SELECT COUNT(*)
+        FROM {role_assignments} ra
+        JOIN {user} u ON u.id = ra.userid
+        WHERE ra.roleid = 5
+    ");
+    $total_cidades = $DB->count_records_sql("
+        SELECT COUNT(DISTINCT(city))
+        FROM {user} 
+        WHERE city IS NOT NULL AND city <> ''
+    ");
+    $total_categorias_nivel1 = $DB->count_records('course_categories', ['parent' => 0]);
 
-    // Retorna os números como um array associativo
     return [
-        'total_cursos' => $total_cursos
+        //'total_cursos' => $total_cursos,
+        'total_alunos' => $total_alunos,
+        'total_cidades' => $total_cidades,
+        'total_categorias_nivel1' => $total_categorias_nivel1
     ];
 }
 
+function theme_mooze_popular_courses() {
+    global $DB, $OUTPUT;
+
+    $courses = $DB->get_records_sql("
+        SELECT c.id, c.fullname, c.summary, c.shortname
+        FROM {course} c
+        LEFT JOIN {logstore_standard_log} l ON c.id = l.courseid
+        WHERE c.visible = 1 AND c.id <> 1
+        GROUP BY c.id
+        ORDER BY COUNT(l.id) DESC
+        LIMIT 4
+    ");
+
+    $courses_data = [];
+    foreach ($courses as $course) {
+        $url = new moodle_url('/course/view.php', ['id' => $course->id]);
+
+        // Obtendo a imagem correta do curso
+        $context = context_course::instance($course->id);
+        $fs = get_file_storage();
+        $files = $fs->get_area_files($context->id, 'course', 'overviewfiles', false, '', false);
+
+        $courseimage = '';
+        foreach ($files as $file) {
+            if (!$file->is_directory()) { // Evita pegar diretórios
+                $courseimage = moodle_url::make_pluginfile_url(
+                    $file->get_contextid(),
+                    $file->get_component(),
+                    $file->get_filearea(),
+                    $file->get_itemid(),
+                    $file->get_filepath(),
+                    $file->get_filename()
+                )->out(false);
+                
+                // Remover "/0/" se estiver na URL
+                $courseimage = str_replace('/0/', '/', $courseimage);
+                
+                break; // Pega apenas o primeiro arquivo válido
+            }
+        }
+        // Se não encontrou imagem, usa uma padrão
+        if (empty($courseimage)) {
+            $courseimage = new moodle_url('/theme/mooze/pix/default-course.jpg');
+        }
+        // Obtendo o professor principal do curso
+        $teacher = $DB->get_record_sql("
+            SELECT u.id, u.firstname, u.lastname
+            FROM {user} u
+            JOIN {role_assignments} ra ON u.id = ra.userid
+            JOIN {context} ctx ON ra.contextid = ctx.id
+            JOIN {role} r ON ra.roleid = r.id
+            WHERE ctx.instanceid = ? AND ctx.contextlevel = 50 AND r.shortname = 'editingteacher'
+            LIMIT 1
+        ", [$course->id]);
+
+        $teachername = $teacher ? fullname($teacher) : 'Não definido';
+        $teacherurl = $teacher ? new moodle_url('/user/profile.php', ['id' => $teacher->id]) : '#';
+
+        $courses_data[] = [
+            'fullname' => format_string($course->fullname),
+            'shortname' => format_string($course->shortname),
+            'summary' => format_text($course->summary, FORMAT_HTML),
+            'courseurl' => $url->out(false),
+            'courseimage' => $courseimage,
+            'teachername' => $teachername,
+            'teacherurl' => $teacherurl->out(false),
+        ];
+    }
+    return $courses_data;
+}

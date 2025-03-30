@@ -193,12 +193,6 @@ $light-bg: #f5f5f5;
     }
 }
 
-// Remove todas as regras conflitantes anteriores
-.dropdown:hover .dropdown-menu,
-.dropdown-menu {
-    display: block;
-}
-
 // Adicionar keyframes para a animação
 @keyframes dropdownFade {
     from {

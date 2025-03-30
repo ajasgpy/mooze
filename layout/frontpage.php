@@ -42,6 +42,9 @@ if ($loggedin) {
 // Obtém os números da função theme_mooze_numbers em lib.php
 $numbers_data = theme_mooze_numbers();
 
+// Obtém os cursos mais acessados pela função theme_mooze_popular_courses em lib.php
+$popular_courses = theme_mooze_popular_courses();
+
 // Criar o contexto para o Mustache.
 $frontpagecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => \core\context\course::instance(SITEID), "escape" => false]),
@@ -54,8 +57,10 @@ $frontpagecontext = [
     'langmenu' => $primarymenu['lang'],
     'loggedin' => $loggedin,
     'user' => $usercontext, // Adiciona as informações do usuário ao contexto
-    'numbers' => $numbers_data // Adiciona os números ao contexto
+    'numbers' => $numbers_data, // Adiciona os números ao contexto
+    'popular_courses' => $popular_courses
 ];
+
 
 // Renderiza o template Mustache corrigido.
 echo $OUTPUT->render_from_template('theme_mooze/frontpage', $frontpagecontext);
