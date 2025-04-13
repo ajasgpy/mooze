@@ -9,35 +9,35 @@
 
 <body {{{bodyattributes}}}>
     <script>
-        // Aplica o estado do sidebar imediatamente
-        (function() {
-            if (localStorage.getItem('sidebarCollapsed') === 'true') {
-                document.documentElement.classList.add('sidebar-collapsed');
-            }
-        })();
+        document.documentElement.classList.add('no-transition');
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            document.documentElement.classList.add('sidebar-collapsed');
+        }
+        window.addEventListener('load', function() {
+            requestAnimationFrame(function() {
+                document.documentElement.classList.remove('no-transition');
+            });
+        });
     </script>
 {{{ output.standard_top_of_body_html }}}
     {{> theme_mooze/navbar}}
-<div class="d-flex">
-    {{#loggedin}}
-        {{> theme_mooze/sidebar}}
-    {{/loggedin}}
-    
-    <div class="main-content">
-        <div id="page-wrapper" class="dashboard-wrapper">
-            <div id="page" class="container-fluid">
-                <div id="page-content" class="row">
-                    <div id="region-main-box" class="col-12">
-                        <section id="region-main" class="col-12" aria-label="{{#str}}content{{/str}}">
-                            {{{output.main_content}}}
-                        </section>
-                    </div>
+    <div id="page" class="container">
+        <div id="page-content" class="row">
+            {{#loggedin}}
+            <div class="col-md-3">
+                {{> theme_mooze/sidebar}}
+            </div>
+            {{/loggedin}}
+            <div class="{{#loggedin}}col-md-9{{/loggedin}}{{^loggedin}}col-12{{/loggedin}}">
+                <div id="region-main-box" class="region-main">
+                    <section id="region-main" class="region-main-content" aria-label="{{#str}}content{{/str}}">
+                        {{{output.main_content}}}
+                    </section>
                 </div>
             </div>
         </div>
-    {{> theme_mooze/footer }} {{!-- footer --}}
+        {{> theme_mooze/footer }}
     </div>
-</div>
 
 {{#js}}
     require(['theme_mooze/dropdown', 'theme_mooze/teste', 'theme_mooze/sidebar'], function(Dropdown, Teste, Sidebar) {
@@ -49,6 +49,5 @@
 {{/js}}
 
     {{{ output.standard_end_of_body_html }}}
-
 </body>
 </html> 

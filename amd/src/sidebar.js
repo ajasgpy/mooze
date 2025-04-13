@@ -1,55 +1,81 @@
 define(['jquery'], function ($) {
-  // Função para aplicar o estado inicial
+  // Função para aplicar o estado inicial imediatamente
   (function() {
-    var sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-    if (sidebarCollapsed) {
-      var sidebar = document.querySelector('#moozeSidebar');
-      if (sidebar) {
-        sidebar.classList.add('no-transition');
-        sidebar.classList.add('collapsed');
-        document.documentElement.classList.add('sidebar-collapsed');
-        
-        // Force reflow
-        sidebar.offsetHeight;
-        
-        // Remove a classe no-transition após o reflow
-        requestAnimationFrame(function() {
-          sidebar.classList.remove('no-transition');
-        });
-      }
+    // Adiciona script ao head para garantir execução o mais cedo possível
+    var style = document.createElement('style');
+    style.textContent = 'html.no-transition * { transition: none !important; }';
+    document.head.appendChild(style);
+    
+    // Aplica estado inicial
+    document.documentElement.classList.add('no-transition');
+    if (localStorage.getItem('sidebarCollapsed') === 'true') {
+      document.documentElement.classList.add('sidebar-collapsed');
     }
+
+    // Remove a classe no-transition após o primeiro paint
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        document.documentElement.classList.remove('no-transition');
+      });
+    });
   })();
 
   return {
     init: function init() {
-      var sidebar = $('#moozeSidebar');
       var toggle = $('#sidebarToggle');
-      var mainContent = $('.main-content');
+      var toggleIcon = $('.toggle-icon');
+      var sidebar = $('.mooze-sidebar');
 
-      // Toggle do sidebar
-      toggle.on('click', function () {
-        sidebar.toggleClass('collapsed');
-        mainContent.toggleClass('expanded');
-        var isCollapsed = sidebar.hasClass('collapsed');
-
-        // Salva o estado no localStorage
-        localStorage.setItem('sidebarCollapsed', isCollapsed);
-        // Atualiza a classe no HTML
-        document.documentElement.classList.toggle('sidebar-collapsed', isCollapsed);
+      // Adiciona classes para animação
+      sidebar.addClass('animate-sidebar');
+      
+      // Toggle do sidebar com animação suave
+      toggle.on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSidebar();
       });
 
-      // Responsividade automática
+      function toggleSidebar() {
+        var isCollapsed = !document.documentElement.classList.contains('sidebar-collapsed');
+        
+        // Adiciona classe de animação
+        sidebar.addClass('is-transitioning');
+        
+        requestAnimationFrame(function() {
+          // Toggle das classes
+          document.documentElement.classList.toggle('sidebar-collapsed', isCollapsed);
+          
+          // Anima o ícone com transform
+          toggleIcon.css({
+            transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+          });
+          
+          // Salva o estado
+          localStorage.setItem('sidebarCollapsed', isCollapsed);
+          
+          // Remove a classe de animação após a transição
+          setTimeout(function() {
+            sidebar.removeClass('is-transitioning');
+          }, 500); // Tempo igual à duração da transição CSS
+        });
+      }
+
+      // Responsividade automática com animação suave
       function checkWidth() {
-        if (window.innerWidth < 768) {
-          sidebar.addClass('mobile');
-        } else {
-          sidebar.removeClass('mobile');
+        if (window.innerWidth < 768 && !document.documentElement.classList.contains('sidebar-collapsed')) {
+          toggleSidebar();
         }
       }
 
-      // Verifica no carregamento e no redimensionamento
+      // Verifica no carregamento e no redimensionamento com debounce
       checkWidth();
-      $(window).resize(checkWidth);
+      var resizeTimer;
+      $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(checkWidth, 250);
+      });
     }
   };
 });

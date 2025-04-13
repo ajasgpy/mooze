@@ -1,51 +1,46 @@
-// Adicione isso no início do arquivo
-.mooze-sidebar {
-    // Desabilita transições durante o carregamento inicial
-    &.no-transition {
-        transition: none !important;
-    }
+// Desabilitar transições durante o carregamento
+html.no-transition * {
+    transition: none !important;
 }
 
-html.sidebar-collapsed {
-    .mooze-sidebar {
-        width: 60px !important;
-        
-        .sidebar-text {
-            opacity: 0;
-            width: 0;
-        }
-
-        .sidebar-item {
-            padding: 12px 20px !important;
-            justify-content: center;
-
-            i {
-                margin-right: 0;
-            }
-        }
-    }
-
-    .main-content {
-        margin-left: 60px !important;
-    }
+// Layout principal
+#page {
+    padding-top: 84px; // navbar height + 20px
+    min-height: 100vh;
 }
 
+// Sidebar
 .mooze-sidebar {
-    width: 250px;
     background-color: #f8f9fa;
     border-right: 1px solid #e9ecef;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 60px; // Ajuste conforme a altura da sua navbar
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    z-index: 1000;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    // Animações suaves
+    &.animate-sidebar {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .sidebar-menu {
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-text {
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    &.is-transitioning {
+        overflow: hidden;
+        pointer-events: none;
+    }
 
     .sidebar-toggle {
         position: absolute;
-        right: -15px;
-        top: 20px;
+        right: 8px;
+        top: 0px;
         width: 30px;
         height: 30px;
         border-radius: 50%;
@@ -55,15 +50,18 @@ html.sidebar-collapsed {
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 1001;
+        z-index: 101;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &:hover {
             background: #e9ecef;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
-        i {
-            transition: transform 0.3s ease;
+        .toggle-icon {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
     }
 
@@ -71,7 +69,7 @@ html.sidebar-collapsed {
         ul {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 5px 0px 0px -9px;
 
             li {
                 margin-bottom: 5px;
@@ -82,100 +80,118 @@ html.sidebar-collapsed {
                     padding: 12px 20px;
                     color: #495057;
                     text-decoration: none;
-                    transition: all 0.3s ease;
                     white-space: nowrap;
                     overflow: hidden;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
                     &:hover {
                         background-color: #e9ecef;
                         color: #0056b3;
+                        transform: translateX(5px);
                     }
 
                     i {
-                        width: 20px;
+                        width: 24px;
                         margin-right: 10px;
                         font-size: 16px;
+                        flex-shrink: 0;
+                        text-align: center;
                     }
 
                     .sidebar-text {
                         font-size: 14px;
-                        transition: opacity 0.3s ease;
+                        white-space: nowrap;
                     }
-                }
-            }
-        }
-    }
-
-    // Estado recolhido
-    &.collapsed {
-        width: 60px;
-
-        .sidebar-text {
-            opacity: 0;
-            width: 0;
-        }
-
-        .sidebar-item {
-            padding: 12px 20px !important;
-            justify-content: center;
-
-            i {
-                margin-right: 0;
-            }
-        }
-    }
-
-    // Responsivo
-    @media (max-width: 768px) {
-        &.mobile {
-            width: 60px;
-
-            &:hover {
-                width: 250px;
-
-                .sidebar-text {
-                    opacity: 1;
-                    width: auto;
-                }
-
-                .sidebar-item {
-                    padding: 12px 20px;
-                    justify-content: flex-start;
-
-                    i {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            .sidebar-text {
-                opacity: 0;
-                width: 0;
-            }
-
-            .sidebar-item {
-                padding: 12px 20px;
-                justify-content: center;
-
-                i {
-                    margin-right: 0;
                 }
             }
         }
     }
 }
 
-// Ajuste o conteúdo principal para não ficar sob a sidebar
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.3s ease;
-
-    &.expanded {
-        margin-left: 60px;
+// Estado recolhido
+html.sidebar-collapsed {
+    .col-md-3 {
+        flex: 0 0 80px;
+        max-width: 80px;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @media (max-width: 768px) {
-        margin-left: 60px;
+    .col-md-9 {
+        flex: 0 0 calc(100% - 80px);
+        max-width: calc(100% - 80px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mooze-sidebar {
+        .sidebar-text {
+            opacity: 0;
+            width: 0;
+            display: none;
+        }
+
+        .sidebar-item {
+            padding: 12px;
+            justify-content: center;
+            width: 80px;
+
+            i {
+                margin-right: 0;
+            }
+
+            &:hover {
+                transform: translateX(2px);
+            }
+        }
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 80px;
+        max-width: 80px;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .col-md-9 {
+        flex: 0 0 calc(100% - 80px);
+        max-width: calc(100% - 80px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mooze-sidebar {
+        &:hover {
+            .sidebar-text {
+                opacity: 1;
+                width: auto;
+                display: block;
+            }
+
+            .sidebar-item {
+                padding: 12px 20px;
+                justify-content: flex-start;
+                width: auto;
+
+                i {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .sidebar-text {
+            opacity: 0;
+            width: 0;
+            display: none;
+        }
+
+        .sidebar-item {
+            padding: 12px;
+            justify-content: center;
+            width: 80px;
+
+            i {
+                margin-right: 0;
+            }
+        }
     }
 }
