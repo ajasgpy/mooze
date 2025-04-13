@@ -14,18 +14,6 @@ $card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     position: relative;
     color: white;
 
-    // Efeito de onda no background
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 50px;
-        background: white;
-        clip-path: ellipse(70% 50% at 50% 100%);
-    }
-
     .container {
         width: 100%;
         position: relative;

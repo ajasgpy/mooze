@@ -1,97 +1,99 @@
 <footer class="main-footer">
-    <div class="footer-content">
-        {{!-- Sobre Nós --}}
-        <div class="footer-column">
-            <h3>Sobre Nós</h3>
-            <ul>
-                <li><a href="#">Quem Somos</a></li>
-                <li><a href="#">Nossa Missão</a></li>
-                <li><a href="#">Trabalhe Conosco</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Política de Privacidade</a></li>
-                <li><a href="#">Termos de Uso</a></li>
-            </ul>
+    <div class="Container">
+        <div class="footer-content">
+            {{!-- Sobre Nós --}}
+            <div class="footer-column">
+                <h3>Sobre Nós</h3>
+                <ul>
+                    <li><a href="#">Quem Somos</a></li>
+                    <li><a href="#">Nossa Missão</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+
+            {{!-- Nossos Serviços --}}
+            <div class="footer-column">
+                <h3>Nossos Serviços</h3>
+                <ul>
+                    <li><a href="#">Cursos Online</a></li>
+                    <li><a href="#">Certificações</a></li>
+                    <li><a href="#">Para Empresas</a></li>
+                    <li><a href="#">Para Instituições</a></li>
+                    <li><a href="#">Suporte</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            {{!-- Redes Sociais --}}
+            <div class="footer-column">
+                <h3>Siga-nos</h3>
+                <ul class="social-links">
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {{!-- Contato --}}
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>contato@seudominio.com</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>(00) 0000-0000</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Seu Endereço, 123<br>Cidade - Estado</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        {{!-- Nossos Serviços --}}
-        <div class="footer-column">
-            <h3>Nossos Serviços</h3>
-            <ul>
-                <li><a href="#">Cursos Online</a></li>
-                <li><a href="#">Certificações</a></li>
-                <li><a href="#">Para Empresas</a></li>
-                <li><a href="#">Para Instituições</a></li>
-                <li><a href="#">Suporte</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-        </div>
-
-        {{!-- Redes Sociais --}}
-        <div class="footer-column">
-            <h3>Siga-nos</h3>
-            <ul class="social-links">
-                <li>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Facebook</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        <span>YouTube</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        {{!-- Contato --}}
-        <div class="footer-column">
-            <h3>Contato</h3>
-            <ul class="contact-info">
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <span>contato@seudominio.com</span>
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i>
-                    <span>(00) 0000-0000</span>
-                </li>
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Seu Endereço, 123<br>Cidade - Estado</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    {{!-- Copyright --}}
-    <div class="footer-bottom">
-        <div class="footer-logo">
-            <a href="{{config.wwwroot}}">
-                <img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="{{sitename}}">
-            </a>
-        </div>
-        <div class="copyright">
-            <p>&copy; <span id="current-year"></span> {{sitename}}. Todos os direitos reservados.</p>
+        {{!-- Copyright --}}
+        <div class="footer-bottom">
+            <div class="footer-logo">
+                <a href="{{config.wwwroot}}">
+                    <img src="{{config.wwwroot}}/theme/mooze/pix/logo.png" alt="{{sitename}}">
+                </a>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> {{sitename}}. Todos os direitos reservados.</p>
+            </div>
         </div>
     </div>
 </footer>
@@ -99,13 +101,3 @@
 <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
-
-{{{ output.standard_end_of_body_html }}}
-
-{{#js}}
-    require(['theme_mooze/dropdown', 'theme_mooze/teste'], function(Dropdown, Teste) {
-        Dropdown.init();
-        Teste.init();
-        Teste.toggle();
-    });
-{{/js}}

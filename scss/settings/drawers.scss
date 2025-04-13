@@ -1,0 +1,188 @@
+// Variáveis
+$dashboard-bg: #f8f9fa;
+$content-bg: #ffffff;
+$border-color: #e9ecef;
+$primary-color: #5C4599;
+$secondary-color: #9342A6;
+$text-color: #1c1d1f;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+// Layout principal
+.drawers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 100px 50px 100px;
+}
+.dashboard-wrapper {
+    background-color: $dashboard-bg;
+    min-height: calc(100vh - 64px); // Altura da navbar
+    padding-top: 64px; // Altura da navbar
+    margin-top: 0;
+}
+
+#page {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#page-content {
+    margin: 0;
+}
+
+// Região principal
+#region-main-box {
+    padding: 0;
+}
+
+#region-main {
+    background: $content-bg;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+    padding: 2rem;
+    margin: 0;
+    min-height: 400px;
+
+    // Estilos para blocos dentro da região principal
+    .block {
+        background: $content-bg;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        box-shadow: $box-shadow;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+
+        .header {
+            border-bottom: 1px solid $border-color;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+
+            h2 {
+                color: $primary-color;
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    #page {
+        padding: 1rem;
+    }
+
+    #region-main {
+        padding: 1rem;
+    }
+}
+
+// Animações
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Aplicar animação aos blocos
+.block {
+    animation: fadeIn 0.3s ease-out;
+}
+
+// Estilos para links e botões
+a {
+    color: $primary-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: $secondary-color;
+    }
+}
+
+// Estilos para títulos
+h1, h2, h3, h4, h5, h6 {
+    color: $text-color;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+// Estilos para tabelas
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+
+    th, td {
+        padding: 1rem;
+        border-bottom: 1px solid $border-color;
+    }
+
+    th {
+        background-color: rgba($primary-color, 0.05);
+        color: $primary-color;
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: rgba($primary-color, 0.02);
+    }
+}
+
+// Estilos para formulários
+.form-control {
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+}
+
+// Estilos para botões
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &-primary {
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        color: white;
+        border: none;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+        }
+    }
+}
+
+.mooze-sidebar {
+    .sidebar-toggle {
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &.collapsed .toggle-icon {
+        transform: rotate(180deg);
+    }
+}
+
+html.sidebar-collapsed .mooze-sidebar {
+    &.no-transition,
+    &.no-transition * {
+        transition: none !important;
+    }
+} 

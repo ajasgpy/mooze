@@ -34,6 +34,11 @@
                         <a href="{{user.profileurl}}" class="dropdown-item">
                             <i class="fas fa-user"></i> Meu Perfil
                         </a>
+                        {{#user.isadmin}}
+                            <a href="{{config.wwwroot}}/admin/search.php" class="dropdown-item">
+                                <i class="fas fa-cogs"></i> Administração
+                            </a>
+                        {{/user.isadmin}}
                         <a href="{{config.wwwroot}}/my" class="dropdown-item">
                             <i class="fas fa-th"></i> Painel
                         </a>

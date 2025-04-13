@@ -1,0 +1,181 @@
+// Adicione isso no início do arquivo
+.mooze-sidebar {
+    // Desabilita transições durante o carregamento inicial
+    &.no-transition {
+        transition: none !important;
+    }
+}
+
+html.sidebar-collapsed {
+    .mooze-sidebar {
+        width: 60px !important;
+        
+        .sidebar-text {
+            opacity: 0;
+            width: 0;
+        }
+
+        .sidebar-item {
+            padding: 12px 20px !important;
+            justify-content: center;
+
+            i {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .main-content {
+        margin-left: 60px !important;
+    }
+}
+
+.mooze-sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 60px; // Ajuste conforme a altura da sua navbar
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+
+    .sidebar-toggle {
+        position: absolute;
+        right: -15px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #e9ecef;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 1001;
+
+        &:hover {
+            background: #e9ecef;
+        }
+
+        i {
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .sidebar-menu {
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin-bottom: 5px;
+
+                .sidebar-item {
+                    display: flex;
+                    align-items: center;
+                    padding: 12px 20px;
+                    color: #495057;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    white-space: nowrap;
+                    overflow: hidden;
+
+                    &:hover {
+                        background-color: #e9ecef;
+                        color: #0056b3;
+                    }
+
+                    i {
+                        width: 20px;
+                        margin-right: 10px;
+                        font-size: 16px;
+                    }
+
+                    .sidebar-text {
+                        font-size: 14px;
+                        transition: opacity 0.3s ease;
+                    }
+                }
+            }
+        }
+    }
+
+    // Estado recolhido
+    &.collapsed {
+        width: 60px;
+
+        .sidebar-text {
+            opacity: 0;
+            width: 0;
+        }
+
+        .sidebar-item {
+            padding: 12px 20px !important;
+            justify-content: center;
+
+            i {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // Responsivo
+    @media (max-width: 768px) {
+        &.mobile {
+            width: 60px;
+
+            &:hover {
+                width: 250px;
+
+                .sidebar-text {
+                    opacity: 1;
+                    width: auto;
+                }
+
+                .sidebar-item {
+                    padding: 12px 20px;
+                    justify-content: flex-start;
+
+                    i {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .sidebar-text {
+                opacity: 0;
+                width: 0;
+            }
+
+            .sidebar-item {
+                padding: 12px 20px;
+                justify-content: center;
+
+                i {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+// Ajuste o conteúdo principal para não ficar sob a sidebar
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+
+    &.expanded {
+        margin-left: 60px;
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 60px;
+    }
+}

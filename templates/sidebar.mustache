@@ -1,0 +1,35 @@
+<div class="mooze-sidebar" id="moozeSidebar">
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-chevron-left toggle-icon"></i>
+    </button>
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="{{config.wwwroot}}" class="sidebar-item">
+                    <i class="fas fa-home"></i>
+                    <span class="sidebar-text">Painel</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{config.wwwroot}}/course" class="sidebar-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="sidebar-text">Meus Cursos</span>
+                </a>
+            </li>
+            {{#user.isadmin}}
+            <li>
+                <a href="{{config.wwwroot}}/admin/search.php" class="sidebar-item">
+                    <i class="fas fa-cogs"></i>
+                    <span class="sidebar-text">Administração</span>
+                </a>
+            </li>
+            {{/user.isadmin}}
+            <li>
+                <a href="{{config.wwwroot}}/badges/mybadges.php" class="sidebar-item">
+                    <i class="fas fa-certificate"></i>
+                    <span class="sidebar-text">Certificados</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div> 

@@ -32,6 +32,11 @@ $THEME->layouts = [
          'regions' => [],
          'options' => ['langmenu' => true],
      ],
+     'drawers' => [
+         'file' => 'drawers.php',
+         'regions' => ['side-pre'],
+         'defaultregion' => 'side-pre',
+     ],
  ];
 
 // Ativa o sistema de ícones FontAwesome

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html {{{output.htmlattributes}}}>
+<head>
+    <title>{{{output.page_title}}}</title>
+    <link rel="shortcut icon" href="{{{output.favicon}}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{{ output.standard_head_html }}}
+</head>
+
+<body {{{bodyattributes}}}>
+    <script>
+        // Aplica o estado do sidebar imediatamente
+        (function() {
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                document.documentElement.classList.add('sidebar-collapsed');
+            }
+        })();
+    </script>
+{{{ output.standard_top_of_body_html }}}
+    {{> theme_mooze/navbar}}
+<div class="d-flex">
+    {{#loggedin}}
+        {{> theme_mooze/sidebar}}
+    {{/loggedin}}
+    
+    <div class="main-content">
+        <div id="page-wrapper" class="dashboard-wrapper">
+            <div id="page" class="container-fluid">
+                <div id="page-content" class="row">
+                    <div id="region-main-box" class="col-12">
+                        <section id="region-main" class="col-12" aria-label="{{#str}}content{{/str}}">
+                            {{{output.main_content}}}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{> theme_mooze/footer }} {{!-- footer --}}
+    </div>
+</div>
+
+{{#js}}
+    require(['theme_mooze/dropdown', 'theme_mooze/teste', 'theme_mooze/sidebar'], function(Dropdown, Teste, Sidebar) {
+        Dropdown.init();
+        Teste.init();
+        Teste.toggle();
+        Sidebar.init();
+    });
+{{/js}}
+
+    {{{ output.standard_end_of_body_html }}}
+
+</body>
+</html> 
